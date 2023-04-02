@@ -30,7 +30,7 @@ const ColorModeSwitch = (props: Props) => {
     <div className="flex overflow-hidden min-w-[130px] justify-between">
       <span
         className={`font-bold ${
-          !darkMode && "text-gray-300"
+          !darkMode && "text-darkTeritary"
         } transition-colors duration-500`}
         onClick={() => {
           if (!darkMode) themeHandler();
@@ -55,7 +55,7 @@ const ColorModeSwitch = (props: Props) => {
       )}
       <span
         className={`font-bold ${
-          darkMode && "text-gray-300"
+          darkMode && "text-darkTeritary"
         } transition-colors duration-500`}
         onClick={() => {
           if (darkMode) themeHandler();

@@ -9,6 +9,12 @@ module.exports = {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
+    colors: {
+      lightPrimary: "",
+      darkPrimary: "#000000",
+      darkSecondary: "#0B2447",
+      darkTeritary: "#F6F1F1",
+    },
     extend: {},
   },
   darkMode: "class",

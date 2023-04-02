@@ -1,27 +1,18 @@
 import React from "react";
 import useSWR from "swr";
 import axios from "axios";
+import gameFetcher from "@/hooks/useGames";
+import GameCard from "./GameCard";
 type Props = {};
 //7ad26984614e4308baadfe754c1a00d6
-interface Game {
-  id: number;
-  name: string;
-}
-interface FetchGamesResponse {
-  count: number;
-  results: Game[];
-}
-const fetcher = (url: string) =>
-  axios
-    .get<FetchGamesResponse>(url + "?key=7ad26984614e4308baadfe754c1a00d6")
-    .then((res) => res.data);
-const GameGrid = (props: Props) => {
-  const { data, error } = useSWR("https://api.rawg.io/api/games", fetcher);
+
+const GameGrid = () => {
+  const { data, error } = useSWR("https://api.rawg.io/api/games", gameFetcher);
   return (
-    <ul>
+    <ul className="w-full grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-5 p-5 sm:p-10">
       {error && <p>{error.message}</p>}
       {data?.results.map((game) => (
-        <li key={game.id}>{game.name}</li>
+        <GameCard key={game.id} game={game} />
       ))}
     </ul>
   );
