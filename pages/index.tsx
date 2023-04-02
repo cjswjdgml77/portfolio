@@ -1,3 +1,4 @@
+import GameGrid from "@/components/GameGrid";
 import Navbar from "@/components/Navbar";
 import Head from "next/head";
 
@@ -14,6 +15,9 @@ export default function Home() {
         <section>
           <Navbar></Navbar>
         </section>
+        <main>
+          <GameGrid />
+        </main>
       </div>
     </>
   );
