@@ -1,4 +1,5 @@
 import GameGrid from "@/components/GameGrid";
+import GenreList from "@/components/GenreList";
 import Navbar from "@/components/Navbar";
 import Head from "next/head";
 
@@ -16,9 +17,14 @@ export default function Home() {
           <Navbar></Navbar>
         </section>
 
-        <main className="grid">
-          <GameGrid />
-        </main>
+        <div className="grid grid-cols-[min-content,auto]">
+          <aside className="">
+            <GenreList />
+          </aside>
+          <main>
+            <GameGrid />
+          </main>
+        </div>
       </div>
     </>
   );
