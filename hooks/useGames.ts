@@ -1,4 +1,5 @@
-import axios from "axios";
+import type { AxiosError } from "axios";
+import useData, { FetchResponse } from "./useData";
 
 export interface Platform {
   id: number;
@@ -12,13 +13,7 @@ export interface Game {
   parent_platforms: { platform: Platform }[];
   metacritic: number;
 }
-interface FetchGamesResponse {
-  count: number;
-  results: Game[];
-}
-const gameFetcher = (url: string) =>
-  axios
-    .get<FetchGamesResponse>(url + "?key=7ad26984614e4308baadfe754c1a00d6")
-    .then((res) => res.data);
 
-export default gameFetcher;
+const useGames = (): { data: FetchResponse<Game>; error: AxiosError } =>
+  useData("/games");
+export default useGames;

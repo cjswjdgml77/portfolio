@@ -1,13 +1,8 @@
-import GenreFetcher from "@/hooks/useGenres";
-import useSWR from "swr";
-
+import useGenres from "@/hooks/useGenres";
 type Props = {};
 
 const GenreList = (props: Props) => {
-  const { data, error } = useSWR(
-    "https://api.rawg.io/api/genres",
-    GenreFetcher
-  );
+  const { data, error } = useGenres();
   console.log(data);
   return (
     <ul>
