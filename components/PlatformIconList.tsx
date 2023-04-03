@@ -40,7 +40,7 @@ const PlatformIconList = ({ platforms }: Props) => {
     android: FaAndroid,
   };
   return (
-    <div className="flex">
+    <div className="flex gap-2">
       {platforms.map((platform) => {
         const Icon = iconMap[platform.slug];
         return <Icon color="#999999" key={platform.id} />;

@@ -11,6 +11,7 @@ const GameCard = ({ game }: Props) => {
   return (
     <div className="flex flex-col items-center w-full rounded-2xl bg-darkSecondary overflow-hidden">
       <Image
+        className="w-full min-h-[200px] max-h-[200px]"
         src={game.background_image}
         alt={game.name}
         width="500"

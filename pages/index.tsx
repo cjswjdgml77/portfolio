@@ -17,7 +17,7 @@ export default function Home() {
           <Navbar></Navbar>
         </section>
 
-        <div className="grid grid-cols-[min-content,auto]">
+        <div className="grid grid-cols-[200px,auto]">
           <aside className="">
             <GenreList />
           </aside>
