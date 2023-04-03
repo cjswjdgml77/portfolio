@@ -17,7 +17,7 @@ const GameCard = ({ game }: Props) => {
         height="300"
       />
       <div className="flex flex-col flex-1 w-full justify-center items-center gap-2 py-8">
-        <p className="text-5xl sm:text-3xl text-darkTeritary text-center">
+        <p className="text-5xl sm:text-3xl text-darkTeritary text-center sm:p-4">
           {game.name}
         </p>
         <div className="flex w-full justify-around items-center">

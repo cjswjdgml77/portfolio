@@ -30,7 +30,7 @@ const ColorModeSwitch = (props: Props) => {
     <div className="flex overflow-hidden min-w-[130px] justify-between">
       <span
         className={`font-bold ${
-          !darkMode && "text-darkTeritary"
+          !darkMode ? "text-darkSecondary" : "text-[#6F7378]"
         } transition-colors duration-500`}
         onClick={() => {
           if (!darkMode) themeHandler();
@@ -40,7 +40,7 @@ const ColorModeSwitch = (props: Props) => {
       </span>
       {darkMode ? (
         <FaMoon
-          className={`switch-animation text-gray-300 transition-colors duration-500`}
+          className={`switch-animation text-darkTeritary transition-colors duration-500`}
           fontSize={"1.5rem"}
           data-testid="change-mode"
           onClick={themeHandler}
@@ -55,7 +55,7 @@ const ColorModeSwitch = (props: Props) => {
       )}
       <span
         className={`font-bold ${
-          darkMode && "text-darkTeritary"
+          darkMode ? "text-darkTeritary" : "text-[#6F7378]"
         } transition-colors duration-500`}
         onClick={() => {
           if (darkMode) themeHandler();
