@@ -16,16 +16,6 @@ import { IconType } from "react-icons";
 type Props = {
   platforms: Platform[];
 };
-interface platform {
-  pc: IconType;
-  playstation: IconType;
-  xbox: IconType;
-  nintendo: IconType;
-  mac: IconType;
-  linux: IconType;
-  ios: IconType;
-  web: IconType;
-}
 
 const PlatformIconList = ({ platforms }: Props) => {
   const iconMap: { [key: string]: IconType } = {
@@ -40,10 +30,15 @@ const PlatformIconList = ({ platforms }: Props) => {
     android: FaAndroid,
   };
   return (
-    <div className="flex gap-2">
+    <div className="flex gap-2 items-center">
       {platforms.map((platform) => {
         const Icon = iconMap[platform.slug];
-        return <Icon color="#999999" key={platform.id} />;
+        if (Icon) return <Icon color="#999999" key={platform.id} />;
+        return (
+          <p className="text-[#999999]" key={platform.id}>
+            {platform.slug}
+          </p>
+        );
       })}
     </div>
   );

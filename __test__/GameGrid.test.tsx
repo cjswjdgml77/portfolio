@@ -1,8 +1,9 @@
 import GameGrid from "@/components/GameGrid";
 import { render, screen, waitFor } from "@testing-library/react";
-import fetchMock from "jest-fetch-mock";
 import axios from "axios";
-import GenreList from "@/components/GenreList";
+
+jest.mock("axios");
+const mockedAxios = axios as jest.Mocked<typeof axios>;
 const fakeGame = [
   {
     id: 1,
@@ -35,40 +36,15 @@ const fakeGame = [
     ],
   },
 ];
-
-const fakeGenres = [
-  {
-    id: 2,
-    name: "action",
-    image_background: "https://sefdsfds.com",
-  },
-];
-
-jest.mock("axios");
-const mockedAxios = axios as jest.Mocked<typeof axios>;
-
 describe("GameGrid", () => {
   it("Fetches the game data", async () => {
     mockedAxios.get.mockResolvedValue({ data: { results: fakeGame } });
 
-    render(<GameGrid />);
+    render(<GameGrid genre={null} platform={null} />);
 
     await waitFor(() => {
       screen.getAllByText("matrix2");
       screen.getAllByText("matrix");
-    });
-  });
-});
-
-describe("Genre", () => {
-  beforeEach(() => {
-    fetchMock.resetMocks();
-  });
-  it("Fetches the genre data", async () => {
-    mockedAxios.get.mockResolvedValue({ data: { results: fakeGenres } });
-    render(<GenreList />);
-    await waitFor(() => {
-      screen.getByText("action");
     });
   });
 });

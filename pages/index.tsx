@@ -1,9 +1,15 @@
 import GameGrid from "@/components/GameGrid";
 import GenreList from "@/components/GenreList";
 import Navbar from "@/components/Navbar";
+import PlatformSelector from "@/components/PlatformSelector";
+import { Genre } from "@/hooks/useGenres";
+import { Platform } from "@/hooks/usePlatforms";
 import Head from "next/head";
+import { useState } from "react";
 
 export default function Home() {
+  const [genre, setGenre] = useState<Genre | null>(null);
+  const [platform, setPlatform] = useState<Platform | null>(null);
   return (
     <>
       <Head>
@@ -19,10 +25,11 @@ export default function Home() {
 
         <div className="grid grid-cols-[200px,auto]">
           <aside className="">
-            <GenreList />
+            <GenreList selectedGenre={genre} setGenre={setGenre} />
           </aside>
           <main>
-            <GameGrid />
+            <PlatformSelector setPlatform={setPlatform} />
+            <GameGrid genre={genre} platform={platform} />
           </main>
         </div>
       </div>

@@ -2,17 +2,28 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer components{
     .dark-theme{
         @apply bg-[#0B2447]
     }
-}
-@layer base{
-    body{
-        @apply dark:bg-darkPrimary
+    #drop-checkbox:checked +label>#drop-list{
+        @apply visible scale-y-100 rounded-lg;
+    }
+    #drop-checkbox:checked + label> #drop-list > li{
+        @apply opacity-100 translate-y-0;
+    }
+    #dropbox-container>#drop-checkbox:checked +#dropbox-restarea{
+        @apply block;
     }
 }
+@supports (font: -apple-system-body) and (-webkit-appearance: none) { img[loading="lazy"] { clip-path: inset(0.6px) } }
+
+@layer base{
+    body{
+        @apply dark:bg-darkPrimary p-0 m-0 box-border
+    }
+}
+
 .switch-animation{
     animation: switch-animate 0.5s ease-in-out;  
 }
@@ -72,3 +83,4 @@ background: black;
     animation-timing-function: ease-in-out;
     animation-iteration-count: infinite;
 }
+
