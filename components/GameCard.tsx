@@ -4,6 +4,7 @@ import React from "react";
 import PlatformIconList from "./PlatformIconList";
 import CriticScore from "./CriticScore";
 import defaultImage from "../public/no-image-placeholder-6f3882e0.webp";
+import Emoji from "./Emoji";
 type Props = {
   game: Game;
 };
@@ -25,8 +26,9 @@ const GameCard = ({ game }: Props) => {
           />
           <CriticScore score={game.metacritic} />
         </div>
-        <p className="text-5xl sm:text-3xl text-darkTeritary text-center sm:p-4">
+        <p className="w-full text-5xl sm:text-3xl text-darkTeritary text-center sm:p-4">
           {game.name}
+          <Emoji rating={game.rating_top} />
         </p>
       </div>
     </div>
