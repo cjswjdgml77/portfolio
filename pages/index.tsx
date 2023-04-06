@@ -12,6 +12,7 @@ export interface GameQuery {
   genre: Genre | null;
   platform: Platform | null;
   sortOrder: string | null;
+  searchText: string | null;
 }
 export default function Home() {
   const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
@@ -25,11 +26,15 @@ export default function Home() {
       </Head>
       <div>
         <section>
-          <Navbar></Navbar>
+          <Navbar
+            search={(searchText) => {
+              setGameQuery({ ...gameQuery, searchText });
+            }}
+          ></Navbar>
         </section>
 
-        <div className="grid grid-cols-[200px,auto]">
-          <aside className="">
+        <div className="grid sm:grid-cols-[200px,auto] overflow-x-hidden">
+          <aside className="hidden sm:block">
             <GenreList
               selectedGenre={gameQuery.genre}
               setGenre={(genre) => {
@@ -38,7 +43,7 @@ export default function Home() {
             />
           </aside>
           <main>
-            <div className="flex">
+            <div className="flex flex-col sm:flex-row">
               <PlatformSelector
                 setPlatform={(platform) => {
                   setGameQuery({ ...gameQuery, platform });

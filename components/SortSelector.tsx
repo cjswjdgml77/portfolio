@@ -5,12 +5,12 @@ type Props = {
 };
 
 const SortSelector = ({ setOrder }: Props) => {
-  const dropSelector = useRef(null);
-  const dropRestArea = useRef(null);
-  const checkInput = useRef(null);
+  const dropSelector = useRef<HTMLParagraphElement>(null);
+  const dropRestArea = useRef<HTMLDivElement>(null);
+  const checkInput = useRef<HTMLInputElement>(null);
   const hideBackground = (styleDisplay: string) => {
     if (!dropRestArea.current) return;
-    const area = dropRestArea.current as HTMLDivElement;
+    const area = dropRestArea.current;
     if (area) area.style.display = `${styleDisplay}`;
   };
   const sortOrders = [
@@ -57,7 +57,7 @@ const SortSelector = ({ setOrder }: Props) => {
                 onClick={() => {
                   if (!dropSelector.current) return;
 
-                  const ptag = dropSelector.current as HTMLParagraphElement;
+                  const ptag = dropSelector.current;
                   ptag.innerHTML = `Order by : ${order.label}`;
                   hideBackground("none");
                   setOrder(order.value);
@@ -79,7 +79,7 @@ const SortSelector = ({ setOrder }: Props) => {
         ref={dropRestArea}
         onClick={(e) => {
           if (!checkInput.current) return;
-          const checkBox = checkInput.current as HTMLInputElement;
+          const checkBox = checkInput.current;
           checkBox.click();
           hideBackground("none");
         }}

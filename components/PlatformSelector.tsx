@@ -6,21 +6,21 @@ type Props = {
 };
 
 const PlatformSelector = ({ setPlatform }: Props) => {
-  const dropSelector = useRef(null);
-  const dropRestArea = useRef(null);
-  const checkInput = useRef(null);
+  const dropSelector = useRef<HTMLParagraphElement>(null);
+  const dropRestArea = useRef<HTMLDivElement>(null);
+  const checkInput = useRef<HTMLInputElement>(null);
   const { data, error } = usePlatforms();
   if (error) return null;
   const hideBackground = (styleDisplay: string) => {
     if (!dropRestArea.current) return;
-    const area = dropRestArea.current as HTMLDivElement;
+    const area = dropRestArea.current;
     if (area) area.style.display = `${styleDisplay}`;
   };
 
   const platformClickHandler = (e: MouseEvent, platform: Platform) => {
     if (!dropSelector.current) return;
 
-    const selected = dropSelector.current as HTMLParagraphElement;
+    const selected = dropSelector.current;
     if (!selected) return null;
 
     const text = e.target as HTMLElement | null;
@@ -83,7 +83,7 @@ const PlatformSelector = ({ setPlatform }: Props) => {
         ref={dropRestArea}
         onClick={(e) => {
           if (!checkInput.current) return;
-          const checkBox = checkInput.current as HTMLInputElement;
+          const checkBox = checkInput.current;
           if (checkBox) {
             checkBox.click();
             hideBackground("none");

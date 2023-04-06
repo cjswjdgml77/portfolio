@@ -26,9 +26,9 @@ const ColorModeSwitch = (props: Props) => {
     }
   }, []);
   return (
-    <div className="flex overflow-hidden min-w-[130px] justify-between">
+    <div className="flex overflow-hidden w-auto sm:min-w-[130px] justify-between ">
       <span
-        className={`font-bold ${
+        className={`hidden sm:block font-bold ${
           !darkMode ? "text-darkSecondary" : "text-[#6F7378]"
         } transition-colors duration-500`}
         onClick={() => {
@@ -53,7 +53,7 @@ const ColorModeSwitch = (props: Props) => {
         />
       )}
       <span
-        className={`font-bold ${
+        className={`hidden sm:block font-bold ${
           darkMode ? "text-darkTeritary" : "text-[#6F7378]"
         } transition-colors duration-500`}
         onClick={() => {

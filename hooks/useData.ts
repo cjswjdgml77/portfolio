@@ -23,6 +23,8 @@ const useData = (endPoint: string, gameQuery: GameQuery) => {
     endPoint += "?ordering=" + gameQuery.sortOrder + "&";
   if (gameQuery?.platform)
     endPoint += "?platforms=" + gameQuery.platform.id + "&";
+  if (gameQuery?.searchText)
+    endPoint += "?search=" + gameQuery.searchText + "&";
   else if (!gameQuery.genre && !gameQuery.platform && !gameQuery.sortOrder)
     endPoint = endPoint + "?";
   return useSWR("https://api.rawg.io/api" + endPoint, fetcher);

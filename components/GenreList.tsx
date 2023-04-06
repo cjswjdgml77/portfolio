@@ -25,7 +25,7 @@ const GenreList = ({ selectedGenre, setGenre }: Props) => {
   const { data, error } = useGenres();
   if (error) return null;
   return (
-    <ul className="pt-5 sm:pt-10" ref={sideBar}>
+    <ul className="pt-5  sm:pt-10" ref={sideBar}>
       {!error && !data && <ImSpinner3 className="animate-spin" fontSize={30} />}
       {data?.results.map((genre) => (
         <div

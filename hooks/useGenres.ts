@@ -7,5 +7,10 @@ export interface Genre {
   image_background: string;
 }
 const useGenres = (): { data: FetchResponse<Genre>; error: AxiosError } =>
-  useData("/genres", { genre: null, platform: null, sortOrder: null });
+  useData("/genres", {
+    genre: null,
+    platform: null,
+    sortOrder: null,
+    searchText: null,
+  });
 export default useGenres;
