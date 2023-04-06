@@ -3,6 +3,7 @@ import Image from "next/image";
 import React from "react";
 import PlatformIconList from "./PlatformIconList";
 import CriticScore from "./CriticScore";
+import defaultImage from "../public/no-image-placeholder-6f3882e0.webp";
 type Props = {
   game: Game;
 };
@@ -12,7 +13,7 @@ const GameCard = ({ game }: Props) => {
     <div className="flex flex-col items-center w-full rounded-2xl bg-darkSecondary overflow-hidden">
       <Image
         className="w-full min-h-[200px] max-h-[200px]"
-        src={game.background_image}
+        src={game.background_image ? game.background_image : defaultImage}
         alt={game.name}
         width="500"
         height="300"

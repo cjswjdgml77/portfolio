@@ -6,13 +6,13 @@
     .dark-theme{
         @apply bg-[#0B2447]
     }
-    #drop-checkbox:checked +label>#drop-list{
+    .drop-checkbox:checked +label>#drop-list{
         @apply visible scale-y-100 rounded-lg;
     }
-    #drop-checkbox:checked + label> #drop-list > li{
+    .drop-checkbox:checked + label> #drop-list > li{
         @apply opacity-100 translate-y-0;
     }
-    #dropbox-container>#drop-checkbox:checked +#dropbox-restarea{
+    .dropbox-container>#drop-checkbox:checked +#dropbox-restarea{
         @apply block;
     }
 }

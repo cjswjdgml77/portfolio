@@ -1,23 +1,26 @@
 import usePlatforms, { Platform } from "@/hooks/usePlatforms";
-import type { MouseEvent } from "react";
+import { MouseEvent, useRef } from "react";
 
 type Props = {
   setPlatform: (platform: Platform) => void;
 };
 
 const PlatformSelector = ({ setPlatform }: Props) => {
+  const dropSelector = useRef(null);
+  const dropRestArea = useRef(null);
+  const checkInput = useRef(null);
   const { data, error } = usePlatforms();
   if (error) return null;
-
   const hideBackground = (styleDisplay: string) => {
-    const area = document.getElementById("dropbox-restarea") as HTMLDivElement;
+    if (!dropRestArea.current) return;
+    const area = dropRestArea.current as HTMLDivElement;
     if (area) area.style.display = `${styleDisplay}`;
   };
 
   const platformClickHandler = (e: MouseEvent, platform: Platform) => {
-    const selected = document.getElementById(
-      "drop-selected"
-    ) as HTMLParagraphElement;
+    if (!dropSelector.current) return;
+
+    const selected = dropSelector.current as HTMLParagraphElement;
     if (!selected) return null;
 
     const text = e.target as HTMLElement | null;
@@ -26,22 +29,22 @@ const PlatformSelector = ({ setPlatform }: Props) => {
     hideBackground("none");
     setPlatform(platform);
   };
+
   return (
     <div className="h-[70px]">
-      <div
-        className="z-[999] absolute pointer-events-none"
-        id="dropbox-container"
-      >
+      <div className="drop-container z-[10] relative pointer-events-none">
         <input
-          className="invisible w-0 h-0"
+          className="drop-checkbox invisible w-0 h-0"
           type="checkbox"
-          id="drop-checkbox"
+          id="drop-platform"
           role="button"
+          ref={checkInput}
         />
-        <label className="text-darkTeritary" htmlFor="drop-checkbox">
+        <label className="text-darkTeritary" htmlFor="drop-platform">
           <p
             className="py-3 w-[140px] px-5 rounded-lg bg-darkGray pointer-events-auto"
             id="drop-selected"
+            ref={dropSelector}
             onClick={() => {
               hideBackground("block");
             }}
@@ -77,9 +80,10 @@ const PlatformSelector = ({ setPlatform }: Props) => {
       </div>
       <div
         className="fixed top-0 left-0 bottom-0 right-0 hidden"
-        id="dropbox-restarea"
+        ref={dropRestArea}
         onClick={(e) => {
-          const checkBox = document.getElementById("drop-checkbox");
+          if (!checkInput.current) return;
+          const checkBox = checkInput.current as HTMLInputElement;
           if (checkBox) {
             checkBox.click();
             hideBackground("none");

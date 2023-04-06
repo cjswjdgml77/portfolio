@@ -1,3 +1,4 @@
+import { GameQuery } from "@/pages";
 import axios from "axios";
 import useSWR from "swr";
 import { Genre } from "./useGenres";
@@ -16,14 +17,14 @@ const fetcher = (url: string) =>
     })
     .then((res) => res.data);
 
-const useData = (
-  endPoint: string,
-  genre?: Genre | null,
-  platform?: Platform | null
-) => {
-  if (genre) endPoint += "?genres=" + genre.id + "&";
-  if (platform) endPoint += "?platforms=" + platform.id + "&";
-  else endPoint = endPoint + "?";
+const useData = (endPoint: string, gameQuery: GameQuery) => {
+  if (gameQuery?.genre) endPoint += "?genres=" + gameQuery.genre.id + "&";
+  if (gameQuery?.sortOrder)
+    endPoint += "?ordering=" + gameQuery.sortOrder + "&";
+  if (gameQuery?.platform)
+    endPoint += "?platforms=" + gameQuery.platform.id + "&";
+  else if (!gameQuery.genre && !gameQuery.platform && !gameQuery.sortOrder)
+    endPoint = endPoint + "?";
   return useSWR("https://api.rawg.io/api" + endPoint, fetcher);
 };
 export default useData;

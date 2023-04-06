@@ -2,14 +2,19 @@ import GameGrid from "@/components/GameGrid";
 import GenreList from "@/components/GenreList";
 import Navbar from "@/components/Navbar";
 import PlatformSelector from "@/components/PlatformSelector";
+import SortSelector from "@/components/SortSelector";
 import { Genre } from "@/hooks/useGenres";
 import { Platform } from "@/hooks/usePlatforms";
 import Head from "next/head";
 import { useState } from "react";
 
+export interface GameQuery {
+  genre: Genre | null;
+  platform: Platform | null;
+  sortOrder: string | null;
+}
 export default function Home() {
-  const [genre, setGenre] = useState<Genre | null>(null);
-  const [platform, setPlatform] = useState<Platform | null>(null);
+  const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
   return (
     <>
       <Head>
@@ -25,11 +30,28 @@ export default function Home() {
 
         <div className="grid grid-cols-[200px,auto]">
           <aside className="">
-            <GenreList selectedGenre={genre} setGenre={setGenre} />
+            <GenreList
+              selectedGenre={gameQuery.genre}
+              setGenre={(genre) => {
+                setGameQuery({ ...gameQuery, genre });
+              }}
+            />
           </aside>
           <main>
-            <PlatformSelector setPlatform={setPlatform} />
-            <GameGrid genre={genre} platform={platform} />
+            <div className="flex">
+              <PlatformSelector
+                setPlatform={(platform) => {
+                  setGameQuery({ ...gameQuery, platform });
+                }}
+              />
+              <SortSelector
+                setOrder={(sortOrder) =>
+                  setGameQuery({ ...gameQuery, sortOrder })
+                }
+              />
+            </div>
+
+            <GameGrid gameQuery={gameQuery} />
           </main>
         </div>
       </div>

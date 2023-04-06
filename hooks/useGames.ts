@@ -1,3 +1,4 @@
+import { GameQuery } from "@/pages";
 import type { AxiosError } from "axios";
 import useData, { FetchResponse } from "./useData";
 import { Genre } from "./useGenres";
@@ -16,8 +17,7 @@ export interface Game {
 }
 
 const useGames = (
-  genre: Genre | null,
-  platform: UsePlatform | null
+  gameQuery: GameQuery
 ): { data: FetchResponse<Game>; error: AxiosError } =>
-  useData("/games", genre, platform);
+  useData("/games", gameQuery);
 export default useGames;

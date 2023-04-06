@@ -1,4 +1,5 @@
 import GameGrid from "@/components/GameGrid";
+import { GameQuery } from "@/pages";
 import { render, screen, waitFor } from "@testing-library/react";
 import axios from "axios";
 
@@ -40,7 +41,7 @@ describe("GameGrid", () => {
   it("Fetches the game data", async () => {
     mockedAxios.get.mockResolvedValue({ data: { results: fakeGame } });
 
-    render(<GameGrid genre={null} platform={null} />);
+    render(<GameGrid gameQuery={{} as GameQuery} />);
 
     await waitFor(() => {
       screen.getAllByText("matrix2");

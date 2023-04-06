@@ -13,7 +13,7 @@ const CriticScore = ({ score }: Props) => {
           : "text-darkTeritary"
       }`}
     >
-      {score}
+      {score ? score : "0.0"}
     </span>
   );
 };

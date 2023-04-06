@@ -4,18 +4,15 @@ import useGames from "@/hooks/useGames";
 import { Genre } from "@/hooks/useGenres";
 import { controller } from "@/hooks/useData";
 import { Platform } from "@/hooks/usePlatforms";
+import { GameQuery } from "@/pages";
 
 type Props = {
-  genre: Genre | null;
-  platform: Platform | null;
+  gameQuery: GameQuery;
 };
 //7ad26984614e4308baadfe754c1a00d6
 
-const GameGrid = ({ genre, platform }: Props) => {
-  const { data, error } = useGames(
-    genre ? genre : null,
-    platform ? platform : null
-  );
+const GameGrid = ({ gameQuery }: Props) => {
+  const { data, error } = useGames(gameQuery);
   const skeleton = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
   if (error) controller.abort();
   return (
