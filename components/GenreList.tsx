@@ -25,33 +25,38 @@ const GenreList = ({ selectedGenre, setGenre }: Props) => {
   const { data, error } = useGenres();
   if (error) return null;
   return (
-    <ul className="pt-5  sm:pt-10" ref={sideBar}>
-      {!error && !data && <ImSpinner3 className="animate-spin" fontSize={30} />}
-      {data?.results.map((genre) => (
-        <div
-          className={`flex items-center gap-2 pl-[0.5rem] py-[0.45rem] ${
-            selectedGenre === genre && "translate-x-4 font-semibold"
-          } transition-transform hover:translate-x-4`}
-          key={genre.id}
-        >
-          <Image
-            className="rounded-md min-h-[32px]"
-            src={genre.image_background}
-            alt={genre.name}
-            width={32}
-            height={32}
-          ></Image>
-          <button
+    <div className="pl-[0.5rem] sm:pt-8">
+      <h2 className="text-4xl dark:text-darkTeritary mb-4">Genre</h2>
+      <ul className=" " ref={sideBar}>
+        {!error && !data && (
+          <ImSpinner3 className="animate-spin" fontSize={30} />
+        )}
+        {data?.results.map((genre) => (
+          <div
+            className={`flex items-center gap-2 py-[0.45rem] ${
+              selectedGenre === genre && "translate-x-4 font-semibold"
+            } transition-transform hover:translate-x-4`}
             key={genre.id}
-            className="dark:text-darkTeritary text-left"
-            data-testid="genre-button"
-            onClick={() => setGenre(genre)}
           >
-            {genre.name}
-          </button>
-        </div>
-      ))}
-    </ul>
+            <Image
+              className="rounded-md min-h-[32px] object-cover"
+              src={genre.image_background}
+              alt={genre.name}
+              width={32}
+              height={32}
+            ></Image>
+            <button
+              key={genre.id}
+              className="dark:text-darkTeritary text-left"
+              data-testid="genre-button"
+              onClick={() => setGenre(genre)}
+            >
+              {genre.name}
+            </button>
+          </div>
+        ))}
+      </ul>
+    </div>
   );
 };
 

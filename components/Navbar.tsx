@@ -10,7 +10,7 @@ type Props = {
 
 const Navbar = ({ search }: Props) => {
   return (
-    <div className="flex items-center justify-between pr-7">
+    <div className="flex items-center justify-between pr-7 py-2">
       <Image src={mylogo} alt="my logo" width={60}></Image>
       <SearchInput search={search} />
       <ColorModeSwitch />

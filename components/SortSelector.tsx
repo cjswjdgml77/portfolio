@@ -22,7 +22,7 @@ const SortSelector = ({ setOrder }: Props) => {
     { value: "-rating", label: "Average rating" },
   ];
   return (
-    <div className="h-[70px] left-8">
+    <div className="h-[70px]">
       <div className="dropbox-container z-[10] relative pointer-events-none">
         <input
           className="drop-checkbox invisible w-0 h-0"

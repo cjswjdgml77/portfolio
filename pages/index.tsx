@@ -1,4 +1,5 @@
 import GameGrid from "@/components/GameGrid";
+import GameHeading from "@/components/GameHeading";
 import GenreList from "@/components/GenreList";
 import Navbar from "@/components/Navbar";
 import PlatformSelector from "@/components/PlatformSelector";
@@ -42,8 +43,9 @@ export default function Home() {
               }}
             />
           </aside>
-          <main>
-            <div className="flex flex-col sm:flex-row">
+          <main className="px-5 sm:px-10">
+            <GameHeading gameQuery={gameQuery} />
+            <div className="flex flex-col sm:flex-row  gap-3 sm:gap-0">
               <PlatformSelector
                 setPlatform={(platform) => {
                   setGameQuery({ ...gameQuery, platform });
