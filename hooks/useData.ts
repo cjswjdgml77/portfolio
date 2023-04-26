@@ -1,8 +1,6 @@
 import { GameQuery } from "@/pages";
 import axios from "axios";
 import useSWR from "swr";
-import { Genre } from "./useGenres";
-import { Platform } from "./usePlatforms";
 
 export interface FetchResponse<T> {
   count: number;

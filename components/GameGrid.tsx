@@ -2,7 +2,7 @@ import GameCard from "./GameCard";
 import GameCardSkeleton from "./GameCardSkeleton";
 import useGames from "@/hooks/useGames";
 import { GameQuery } from "@/pages";
-
+import { motion } from "framer-motion";
 type Props = {
   gameQuery: GameQuery;
 };

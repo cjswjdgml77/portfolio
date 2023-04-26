@@ -7,6 +7,11 @@ export interface Platform {
   slug: string;
 }
 const usePlatforms = (): { data: FetchResponse<Platform>; error: AxiosError } =>
-  useData("/platforms/lists/parents", { genre: null, platform: null });
+  useData("/platforms/lists/parents", {
+    genre: null,
+    platform: null,
+    searchText: null,
+    sortOrder: null,
+  });
 
 export default usePlatforms;
